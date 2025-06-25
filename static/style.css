@@ -1,48 +1,136 @@
-body {
-    background: #f0f2f5;
+/* Reset and global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 40px;
+    background: radial-gradient(circle at top left, #1b2735 0%, #090a0f 100%);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Optional background star animation */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: floatStars 80s linear infinite;
+    opacity: 0.04;
+    z-index: 0;
+}
+
+/* Centered login card */
 .login {
-    max-width: 500px;
-    margin: auto;
-    background: white;
-    padding: 30px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(44, 62, 80, 0.95);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.8s ease;
+    backdrop-filter: blur(6px);
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+/* Scroll for very small screens */
+.login::-webkit-scrollbar {
+    width: 4px;
+}
+.login::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-h1 {
+/* Logo (optional) */
+.login img.logo {
+    width: 70px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Headings */
+h1, h2, legend {
     text-align: center;
-    color: #2c3e50;
+    color: #ffffff;
 }
 
+h2 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Label and inputs */
 label {
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+    text-align: left;
+    color: #bdc3c7;
 }
 
 .form-control {
     width: 100%;
-    padding: 10px;
-    margin-top: 4px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 12px 15px;
+    margin: 8px 0 20px;
+    border-radius: 8px;
+    border: 1px solid #7f8c8d;
+    background: #34495e;
+    color: #ecf0f1;
+    font-size: 15px;
 }
 
+.form-control:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* Button */
 .btn {
-    background-color: #3498db;
+    background-image: linear-gradient(120deg, #3498db, #2980b9);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    background-image: linear-gradient(120deg, #2980b9, #1c638d);
+    transform: scale(1.02);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatStars {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* Responsive fix for height overflow */
+@media (max-height: 600px) {
+    .login {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
 }
